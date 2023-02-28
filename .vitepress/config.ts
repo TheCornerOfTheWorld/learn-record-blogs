@@ -4,17 +4,20 @@ import baseConfig from "@vue/theme/config";
 import testContain from "./testContain";
 
 export const sidebar: ThemeConfig["sidebar"] = {
-  "/guide/": [
+  "/vitepress/": [
     {
-      text: "开始",
-      items: [
-        { text: "简介", link: "/guide/introduction" },
-        { text: "测试", link: "/guide/test" },
-        {
-          text: "快速上手",
-          link: "/guide/quick-start",
-        },
-      ],
+      text: "使用",
+      items: [{ text: "markdown编写", link: "/vitepress/introduction" }],
+    },
+    {
+      text: "配置",
+      items: [{ text: "设置主题", link: "/vitepress/config" }],
+    },
+  ],
+  "/vue3/": [
+    {
+      text: "组合式语法",
+      items: [{ text: "markdown编写", link: "/vue3/test" }],
     },
   ],
 };
@@ -59,17 +62,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     nav: [
       {
         text: "vitepress介绍和使用",
-        link: "/vitepress/intro",
-        activeMatch: "/config/",
-      },
-      { text: "Configs", link: "/configs" },
-      {
-        text: "Dropdown Menu",
-        items: [
-          { text: "Item A", link: "/item-1" },
-          { text: "Item B", link: "/item-2" },
-          { text: "Item C", link: "/item-3" },
-        ],
+        link: "/vitepress/introduction",
       },
     ],
     i18n,
