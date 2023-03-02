@@ -1,7 +1,7 @@
 ---
 page: true
 aside: false
-title: Vue.js - 渐进式 JavaScript 框架
+title: 记录学习的点点滴滴
 ---
 
 <script setup>
