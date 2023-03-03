@@ -8,10 +8,6 @@ import testContain from './testContain'
 export const sidebar: ThemeConfig['sidebar'] = {
   '/vitepress/': [
     {
-      text: '使用',
-      items: [{ text: 'markdown编写', link: '/vitepress/introduction' }]
-    },
-    {
       text: '配置',
       items: [
         { text: '介绍', link: '/vitepress/introduction' },
@@ -21,8 +17,12 @@ export const sidebar: ThemeConfig['sidebar'] = {
           text: 'frontmatter设置',
           link: '/vitepress/frontmatter'
         },
-        { text: '自带组件', link: '/vitepress/config' }
+        { text: '自带组件', link: '/vitepress/internalComponent' }
       ]
+    },
+    {
+      text: '使用',
+      items: [{ text: 'markdown编写', link: '/vitepress/markdown' }]
     }
   ],
   '/vue3/': [
