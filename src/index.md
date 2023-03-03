@@ -5,7 +5,7 @@ title: 记录学习的点点滴滴
 ---
 
 <script setup>
-import Home from '@theme/components/Home.vue'
+import Home from './components/Home.vue'
 </script>
 
 <Home />
