@@ -14,14 +14,14 @@ export const sidebar: ThemeConfig['sidebar'] = {
     {
       text: '配置',
       items: [
-        { text: '介绍', link: '/vitepress/vpConfig/introduction' },
-        { text: '默认主题设置', link: '/vitepress/vpConfig/themeConfig' },
-        { text: '应用设置', link: '/vitepress/vpConfig/appConfig' },
+        { text: '介绍', link: '/vitepress/introduction' },
+        { text: '默认主题设置', link: '/vitepress/themeConfig' },
+        { text: '应用设置', link: '/vitepress/appConfig' },
         {
           text: 'frontmatter设置',
-          link: '/vitepress/vpConfig/frontmatter'
+          link: '/vitepress/frontmatter'
         },
-        { text: '自带组件', link: '/vitepress/vpConfig/config' }
+        { text: '自带组件', link: '/vitepress/config' }
       ]
     }
   ],
@@ -73,10 +73,12 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
   themeConfig: {
     nav: [
       {
-        text: 'vitepress介绍和使用',
+        text: 'vitepress',
         link: '/vitepress/introduction'
       }
     ],
+    logo: '/icon_learning.png',
+    siteTitle: '学习笔记',
     i18n,
     sidebar,
     algolia: {
