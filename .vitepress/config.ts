@@ -85,6 +85,14 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
       {
         text: 'Vue3',
         link: '/vue3/basics'
+      },
+      {
+        text: 'LowCode',
+        link: '/lowcode/index'
+      },
+      {
+        text: '分享',
+        link: '/resourceSharing/index'
       }
     ],
     logo: '/icon_learning.png',
