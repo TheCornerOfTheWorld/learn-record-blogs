@@ -64,7 +64,7 @@ const i18n: ThemeConfig['i18n'] = {
 
 export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
   extends: baseConfig,
-  // base: '/note/',
+  base: '/learn-record-blogs/',
   title: 'learn-record',
   description: 'learn note, blogs',
   lang: 'zh-CN',
