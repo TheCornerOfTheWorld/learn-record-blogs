@@ -32,7 +32,8 @@ export const sidebar: ThemeConfig['sidebar'] = {
         { text: '基础', link: '/vue3/basics' },
         { text: '深入组件', link: '/vue3/deeComponent' },
         { text: '逻辑复用', link: '/vue3/logicalReuse' },
-        { text: 'TypeScript', link: '/vue3/typescriptAndVue' }
+        { text: 'TypeScript', link: '/vue3/typescriptAndVue' },
+        { text: 'vite+vue3+ts踩坑记录', link: '/vue3/issue' }
       ]
     }
   ]
