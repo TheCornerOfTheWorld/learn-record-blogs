@@ -76,24 +76,86 @@ const sidebar = {
 
 ## outlineBadges
 
+- Type: boolean
+- Default: true
+
 默认情况下，徽章文本显示在大纲中。禁用此选项可从大纲中隐藏徽章文本。
 
 ## outlineTitle
 
+- Type: string
+- Default: On this page
+
 可用于自定义右侧边栏的标题（在大纲链接的顶部）。这在用另一种语言编写文档时很有用。
 
 ## socialLinks
+
+- Type: SocialLink[]
+
+```js
+interface SocialLink {
+  icon: SocialLinkIcon
+  link: string
+}
+type SocialLinkIcon =
+  | 'discord'
+  | 'facebook'
+  | 'github'
+  | 'instagram'
+  | 'linkedin'
+  | 'mastodon'
+  | 'slack'
+  | 'twitter'
+  | 'youtube'
+  | { svg: string }
+```
 
 您可以定义此选项以在导航中显示带有图标的社交帐户链接。
 Vitepress 包涵了一系列默认 Icons。
 
 ## footer
 
+- Type: Footer
+
+```js
+export default {
+  themeConfig: {
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2019-present Evan You'
+    }
+  }
+}
+
+export interface Footer {
+  message?: string
+  copyright?: string
+}
+```
+
 页脚配置。您可以在页脚上添加消息或版权文本，但是，只有当页面不包含侧边栏时才会显示。这是由于设计问题。
 
 ## editLink
 
-编辑链接允许您在 GitHub 或 GitLab 等 Git 管理服务上显示编辑页面的链接。有关详细信息，请参见  Theme: Edit Link。
+- Type: EditLink
+
+```js
+export default {
+  themeConfig: {
+    editLink: {
+      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      text: 'Edit this page on GitHub'
+    }
+  }
+}
+ts
+export interface EditLink {
+  pattern: string
+  text?: string
+}
+```
+
+编辑链接允许您在 GitHub 或 GitLab 等 Git 管理服务上显示编辑页面的链接。有关详细信息。
 
 ## lastUpdatedText
 
@@ -101,9 +163,24 @@ Vitepress 包涵了一系列默认 Icons。
 
 ## algolia
 
-支持使用 Algolia DocSearch.搜索文档站点的选项。在 Theme: Search 中了解更多信息。
+支持使用 Algolia DocSearch.搜索文档站点的选项。在 [Theme: Search](https://docsearch.algolia.com/docs/what-is-docsearch/) 中了解更多信息。
 
 ## docFooter
+
+```js
+export default {
+  themeConfig: {
+    docFooter: {
+      prev: 'Pagina prior',
+      next: 'Proxima pagina'
+    }
+  }
+}
+export interface DocFooter {
+  prev?: string
+  next?: string
+}
+```
 
 可用于自定义出现在上一个和下一个链接上方的文本。如果不是用英语写文档，会很有用。
 
@@ -119,4 +196,4 @@ Vitepress 包涵了一系列默认 Icons。
 
 可用于自定义 returnToTop 的标签。此标签仅显示在移动视图中。
 
-[了解更多默认主题配置](https://vitepress.vuejs.org/config/theme-config)
+[了解详细默认主题配置](https://vitepress.vuejs.org/config/theme-config)

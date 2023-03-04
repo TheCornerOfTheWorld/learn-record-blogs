@@ -89,35 +89,35 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
       {
         text: 'LowCode',
         link: '/lowcode/index'
-      },
-      {
-        text: '分享',
-        link: '/resourceSharing/index'
-      },
-      {
-        text: '计算机网络',
-        link: '/computerNetworks/index'
-      },
-      {
-        text: '面试题',
-        link: '/interviewQuestion/index'
-      },
-      {
-        text: 'chrome extensions',
-        link: '/chromeExtensions/index'
-      },
-      {
-        text: 'lerna',
-        link: '/lerna/index'
-      },
-      {
-        text: '低代码',
-        link: '/lowcode/index'
-      },
-      {
-        text: 'H5Debugger',
-        link: '/H5Debugger/index'
       }
+      // {
+      //   text: '分享',
+      //   link: '/resourceSharing/index'
+      // },
+      // {
+      //   text: '计算机网络',
+      //   link: '/computerNetworks/index'
+      // },
+      // {
+      //   text: '面试题',
+      //   link: '/interviewQuestion/index'
+      // },
+      // {
+      //   text: 'chrome extensions',
+      //   link: '/chromeExtensions/index'
+      // },
+      // {
+      //   text: 'lerna',
+      //   link: '/lerna/index'
+      // },
+      // {
+      //   text: '低代码',
+      //   link: '/lowcode/index'
+      // },
+      // {
+      //   text: 'H5Debugger',
+      //   link: '/H5Debugger/index'
+      // }
     ],
     logo: '/icon_learning.png',
     siteTitle: '学习笔记',
@@ -130,7 +130,27 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
       searchParameters: {
         facetFilters: ['version:v3']
       }
-    }
+    },
+    outline: [2, 4],
+    outlineTitle: '本页目录',
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/TheCornerOfTheWorld/learn-record-blogs'
+      }
+    ],
+    editLink: {
+      pattern:
+        'https://github.com/TheCornerOfTheWorld/learn-record-blogs/blob/master/src/:path',
+      text: 'Edit this page on GitHub'
+    },
+    docFooter: {
+      prev: '前一页',
+      next: '下一页'
+    },
+    darkModeSwitchLabel: '亮暗模式切换',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单'
   },
   markdown: {
     config(md) {

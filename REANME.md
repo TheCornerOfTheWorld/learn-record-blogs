@@ -14,3 +14,8 @@
 https://thecorneroftheworld.github.io/learn-record-blogs/
 
 https://github.com/TheCornerOfTheWorld/learn-record-blogs
+
+功能介绍参考以下网站
+https://theme-hope.vuejs.press/zh/
+
+代码演示 markdown-it-container
