@@ -3,19 +3,8 @@
    2. 是否支持 js
 2. vitepress 怎么构建出来的网页结构
 3. 爬虫怎么工作的
-4. 总结下 vitepress 的配置模块
-5. 整理下 vue3 内容
-6. 整理 lerna
-7. 整理浏览器插件
-8. 待办信息处理
-9. 计划信息处理
-10. github page ; action 报错
-
-https://thecorneroftheworld.github.io/learn-record-blogs/
-
-https://github.com/TheCornerOfTheWorld/learn-record-blogs
-
-功能介绍参考以下网站
-https://theme-hope.vuejs.press/zh/
-
-代码演示 markdown-it-container
+4. 整理下 vue3 内容
+5. 整理 lerna
+6. 整理浏览器插件
+7. 待办信息处理
+8. 计划信息处理

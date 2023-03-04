@@ -2,7 +2,7 @@
 
 ## Show team members in a page
 
-您可以使用从 vitebress/theme 公开的`<VPTeamMembers>`组件在任何页面上显示团队成员列表。￼html 格式
+您可以使用从 vitebress/theme 公开的`<VPTeamMembers>`组件在任何页面上显示团队成员列表。html 格式
 
 ## Create a full Team Page
 
@@ -19,7 +19,7 @@
 
 创建完整团队页面时的根组件。它只接受一个插槽。它将为所有传入的团队相关组件设置样式。
 
-## `＜ VPTeamPageTitle>`
+## `＜VPTeamPageTitle>`
 
 添加页面的“标题”部分。最好在`<VPTeamPage>`下开始使用。它接受#title 和#lead-slot。
 
