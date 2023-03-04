@@ -97,6 +97,10 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
       {
         text: '计算机网络',
         link: '/computerNetworks/index'
+      },
+      {
+        text: '面试题',
+        link: '/interviewQuestion/index'
       }
     ],
     logo: '/icon_learning.png',
