@@ -86,39 +86,7 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
       {
         text: 'Vue3',
         link: '/vue3/basics'
-      },
-      {
-        text: 'LowCode',
-        link: '/lowcode/index'
       }
-      // {
-      //   text: '分享',
-      //   link: '/resourceSharing/index'
-      // },
-      // {
-      //   text: '计算机网络',
-      //   link: '/computerNetworks/index'
-      // },
-      // {
-      //   text: '面试题',
-      //   link: '/interviewQuestion/index'
-      // },
-      // {
-      //   text: 'chrome extensions',
-      //   link: '/chromeExtensions/index'
-      // },
-      // {
-      //   text: 'lerna',
-      //   link: '/lerna/index'
-      // },
-      // {
-      //   text: '低代码',
-      //   link: '/lowcode/index'
-      // },
-      // {
-      //   text: 'H5Debugger',
-      //   link: '/H5Debugger/index'
-      // }
     ],
     logo: '/icon_learning.png',
     siteTitle: '学习笔记',
@@ -151,7 +119,11 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
     },
     darkModeSwitchLabel: '亮暗模式切换',
     returnToTopLabel: '回到顶部',
-    sidebarMenuLabel: '菜单'
+    sidebarMenuLabel: '菜单',
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2023-present Kaseem'
+    }
   },
   markdown: {
     config(md) {
