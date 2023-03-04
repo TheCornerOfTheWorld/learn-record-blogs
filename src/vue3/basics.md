@@ -2,92 +2,92 @@
 
 ## 响应式基础
 
-###### reactive()
+### reactive()
 
-1. 深层响应性， 更改深层次的对象或数组，你的改动也能被检测到。它和原始对象是不相等的
+深层响应性， 更改深层次的对象或数组，你的改动也能被检测到。它和原始对象是不相等的
 
-2. `reactive()` API 有两条限制：
+`reactive()` API 有两条限制：
 
-   1. 仅对对象类型有效（对象、数组和 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects#使用键的集合对象)），而对 `string`、`number` 和 `boolean` 这样的 [原始类型](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive) 无效。
+1. 仅对对象类型有效（对象、数组和 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects#使用键的集合对象)），而对 `string`、`number` 和 `boolean` 这样的 [原始类型](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive) 无效。
 
-   2. 因为 Vue 的响应式系统是通过**属性访问进行追踪的**，因此我们必须始终保持对该响应式对象的相同引用。这意味着我们不可以随意地“替换”一个响应式对象，因为这将导致对初始引用的响应性连接丢失：
-
-      ```js
-      let state = reactive({ count: 0 })
-
-      // 上面的引用 ({ count: 0 }) 将不再被追踪（响应性连接已丢失！）
-      state = reactive({ count: 1 })
-      ```
-
-3. 将响应式对象的属性赋值或解构至本地变量时，或是将该属性传入一个函数时，我们会失去响应性
-
-###### ref（）
-
-1. 允许我们创建可以使用任何值类型的响应式 **ref**
-
-2. 和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
-
-3. ref 被传递给函数或是从一般对象上被解构时，不会丢失响应性：
+2. 因为 Vue 的响应式系统是通过**属性访问进行追踪的**，因此我们必须始终保持对该响应式对象的相同引用。这意味着我们不可以随意地“替换”一个响应式对象，因为这将导致对初始引用的响应性连接丢失：
 
    ```js
-   const obj = {
-     foo: ref(1),
-     bar: ref(2)
-   }
+   let state = reactive({ count: 0 })
 
-   // 该函数接收一个 ref
-   // 需要通过 .value 取值
-   // 但它会保持响应性
-   callSomeFunction(obj.foo)
-
-   // 仍然是响应式的
-   const { foo, bar } = obj
+   // 上面的引用 ({ count: 0 }) 将不再被追踪（响应性连接已丢失！）
+   state = reactive({ count: 1 })
    ```
 
-4. 在模板中将会被自动”解包“不需要是由`.value`，仅当 ref 是模板渲染上下文的顶层属性时才适用自动“解包”。 例如， foo 是顶层属性，但 object.foo 不是。
+将响应式对象的属性**赋值或解构**至本地变量时，或是将该属性传入一个函数时，我们会**失去响应性**
 
-   ```js
-   const object = { foo: ref(1) }
-   // template
-   {
-     {
-       object.foo + 1
-     }
-   } // [object object]1
-   {
-     {
-       object.foo
-     }
-   } // 1
+### ref（）
 
-   const count = ref(0)
-   const state = reactive({
-     count // count被解包
-   })
-   console.log(state.count) // 0
-   state.count = 1
-   console.log(count.value) // 1
-   ```
+允许我们创建可以使用任何值类型的响应式 **ref**
 
-   只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](https://cn.vuejs.org/api/reactivity-advanced.html#shallowreactive)的属性被访问时不会解包。
+和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
-   **数组和集合类型的 ref 解包**
+ref 被传递给函数或是从一般对象上被解构时，不会丢失响应性：
 
-   跟响应式对象不同，当 ref 作为响应式数组或像 `Map` 这种原生集合类型的元素被访问时，不会进行解包
+```js
+const obj = {
+  foo: ref(1),
+  bar: ref(2)
+}
 
-   ```js
-   const books = reactive([ref('Vue 3 Guide')])
-   // 这里需要 .value
-   console.log(books[0].value)
+// 该函数接收一个 ref
+// 需要通过 .value 取值
+// 但它会保持响应性
+callSomeFunction(obj.foo)
 
-   const map = reactive(new Map([['count', ref(0)]]))
-   // 这里需要 .value
-   console.log(map.get('count').value)
-   ```
+// 仍然是响应式的
+const { foo, bar } = obj
+```
+
+在模板中将会被自动”解包“不需要是由`.value`，仅当 ref 是模板渲染上下文的顶层属性时才适用自动“解包”。 例如， foo 是顶层属性，但 object.foo 不是。
+
+```js
+const object = { foo: ref(1) }
+// template
+{
+  {
+    object.foo + 1
+  }
+} // [object object]1
+{
+  {
+    object.foo
+  }
+} // 1
+
+const count = ref(0)
+const state = reactive({
+  count // count被解包
+})
+console.log(state.count) // 0
+state.count = 1
+console.log(count.value) // 1
+```
+
+只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](https://cn.vuejs.org/api/reactivity-advanced.html#shallowreactive)的属性被访问时不会解包。
+
+### **数组和集合类型的 ref 解包**
+
+跟响应式对象不同，当 ref 作为响应式数组或像 `Map` 这种原生集合类型的元素被访问时，不会进行解包
+
+```js
+const books = reactive([ref('Vue 3 Guide')])
+// 这里需要 .value
+console.log(books[0].value)
+
+const map = reactive(new Map([['count', ref(0)]]))
+// 这里需要 .value
+console.log(map.get('count').value)
+```
 
 ## 计算属性
 
-###### computed
+### computed
 
 ```html
 <script setup>
@@ -116,7 +116,7 @@
 
 ## 样式绑定
 
-###### v-bind
+### v-bind
 
 ```html
 <div :class="[{ active: isActive }, errorClass]"></div>
@@ -134,7 +134,7 @@
 
 ## 列表渲染
 
-###### v-if 和 v-for
+### v-if 和 v-for
 
 当它们同时存在于一个节点上时，`v-if` 比 `v-for` 的优先级更高。这意味着 `v-if` 的条件将无法访问到 `v-for` 作用域内定义的变量别名：
 
@@ -160,7 +160,7 @@
 
 ## 事件处理
 
-###### v-on
+### v-on
 
 在处理事件时调用 `event.preventDefault()` 或 `event.stopPropagation()` 是很常见的
 
@@ -186,7 +186,7 @@
 
 ## 输入绑定
 
-###### v-model
+### v-model
 
 ```html
 const checkedNames = ref([])
@@ -205,7 +205,7 @@ const checkedNames = ref([])
 
 ## 监听器
 
-###### watch
+### watch
 
 `watch` 的第一个参数可以是不同形式的“数据源”：它可以是一个 ref (包括计算属性)、一个响应式对象、一个 getter 函数、或多个数据源组成的数组：
 
@@ -253,7 +253,7 @@ watch(
 )
 ```
 
-###### watchEffect()
+### watchEffect()
 
 侦听器的回调使用与源完全相同的响应式状态是很常见的，我们可以用 [`watchEffect` 函数](https://cn.vuejs.org/api/reactivity-core.html#watcheffect) 来简化上面的代码。`watchEffect()` 允许我们自动跟踪回调的响应式依赖。
 
@@ -354,7 +354,7 @@ watchPostEffect(() => {
 
 ## 模板引用
 
-###### ref
+### ref
 
 ```vue
 <template>
@@ -414,13 +414,13 @@ defineExpose({
 
 ## 组件基础
 
-###### DOM 模板解析
+### DOM 模板解析
 
-1.字符串模板
+#### 字符串模板
 
 字符串模板就是写在 vue 中的 template 中定义的模板，如.vue 的单文件组件模板和定义组件时 template 属性值的模板。字符串模板不会在页面初始化参与页面的渲染，会被 vue 进行解析编译之后再被浏览器渲染，所以不受限于 html 结构和标签的命名。
 
-2.dom 模板(或者称为**Html 模板**)
+#### dom 模板(或者称为**Html 模板**)
 
 dom 模板就是写在 html 文件中，一打开就会被浏览器进行解析渲染的，所以要遵循 html 结构和标签的命名，否则浏览器不解析也就不能获取内容了。
 
@@ -465,7 +465,7 @@ dom 模板就是写在 html 文件中，一打开就会被浏览器进行解析�
 > - 内联模板字符串 (例如 `template: '...'`)
 > - `<script type="text/x-template">`
 
-**大小写区分**
+组件命名推荐使用PascalCase，插件支持高亮
 
 PascalCase 帕斯卡命名 MyData
 

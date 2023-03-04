@@ -13,8 +13,13 @@ module.exports = {
 
 ## vue3 解决 no-unused-vars 报错
 
-```json
-  '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '.*', args: 'none' }], //变量声明未使用
+```js
+module.export = {
+  '@typescript-eslint/no-unused-vars': [
+    'error',
+    { varsIgnorePattern: '.*', args: 'none' }
+  ] //变量声明未使用
+}
 ```
 
 ```js
@@ -47,7 +52,7 @@ module.export = {
 
 ## vue3 Component name "home" should always be multi-word vue/multi-word-component-names
 
-**是因为开启了语法检查，写成驼峰就可以**
+是因为开启了语法检查，写成**驼峰**就可以
 
 ```js
 rules: {
@@ -64,7 +69,7 @@ rules: {
 
 ## error Getting a value from the `props` in root scope of `<script setup>` will cause the value to lose reactivity vue/no-setup-props-destructure(**从’ setup() ‘的根范围的’ props '中获取一个值将导致该值失去反应性**)
 
-修改结构`const { xxx }= props`为`props.xxx`
+修改解构`const { xxx }= props`为`props.xxx`
 
 ## Internal server error: Cannot read config file: E:\project\xi-li\.eslintrc.js
 
@@ -84,19 +89,34 @@ require() of ES Module E:\project\xi-li\.eslintrc.js from E:\project\xi-li\node_
 
 ## defineOptions undefined
 
-package.json
+1. 添加 unplugin-vue-macros 插件
 
-"unplugin-vue-macros": "^0.16.0",
+   ```js
+   // package.json
+   "unplugin-vue-macros": "^0.16.0",
+   
+   // tsconfig.json
+   types: ["unplugin-vue-macros/macros-global"]
+   
+   // vite.config.ts
+   import VueMarcos from "unplugin-vue-macros/vite";
+   plugins: [VueMarcos()] 
+   ```
 
-tsconfig.json
+2. 另外写一个 script
 
-types: ["unplugin-vue-macros/macros-global"]
+   ```vue
+   <script>
+       export default {
+           name: 'componentName'
+       }
+   </script>
+   <script setup>
+       ...
+   </script>
+   ```
 
-vite.config.ts
-
-import VueMarcos from "unplugin-vue-macros/vite";
-
-plugins: [VueMarcos()]
+   
 
 ## SyntaxError: Cannot use import statement outside a module
 
