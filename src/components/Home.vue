@@ -6,7 +6,7 @@
     </h1>
     <p class="description">学而时习之，不亦说乎</p>
     <p class="actions">
-      <a class="get-started" href="/vitepress/introduction.html">
+      <a class="get-started" href="vitepress/introduction.html">
         快速开始
         <svg
           class="icon"

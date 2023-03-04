@@ -10,3 +10,7 @@
 8. 待办信息处理
 9. 计划信息处理
 10. github page ; action 报错
+
+https://thecorneroftheworld.github.io/learn-record-blogs/
+
+https://github.com/TheCornerOfTheWorld/learn-record-blogs
