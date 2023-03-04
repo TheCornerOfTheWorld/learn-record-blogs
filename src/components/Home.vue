@@ -1,15 +1,13 @@
 <template>
   <section id="hero">
     <h1 class="tagline">
-      <span class="accent">渐进式</span>
-      <br />JavaScript 框架
+      <span class="accent">知识</span>
+      <br />人类进步的阶梯
     </h1>
-    <p class="description">
-      易学易用，性能出色，适用场景丰富的 Web 前端框架。
-    </p>
+    <p class="description">学而时习之，不亦说乎</p>
     <p class="actions">
       <a class="get-started" href="/vitepress/introduction.html">
-        快速上手
+        快速开始
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -22,28 +20,7 @@
           />
         </svg>
       </a>
-      <a class="setup" href="/guide/quick-start.html">安装</a>
     </p>
-  </section>
-
-  <section id="highlights" class="vt-box-container">
-    <div class="vt-box">
-      <h2>易学易用</h2>
-      <p>
-        基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API
-        和一流的文档。
-      </p>
-    </div>
-    <div class="vt-box">
-      <h2>性能出色</h2>
-      <p>经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。</p>
-    </div>
-    <div class="vt-box">
-      <h2>灵活多变</h2>
-      <p>
-        丰富的、可渐进式集成的生态系统，可以根据应用规模在库和框架间切换自如。
-      </p>
-    </div>
   </section>
 </template>
 

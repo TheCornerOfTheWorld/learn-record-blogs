@@ -80,15 +80,15 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
     logo: '/icon_learning.png',
     siteTitle: '学习笔记',
     i18n,
-    sidebar,
-    algolia: {
-      indexName: 'vuejs_cn2',
-      appId: 'UURH1MHAF7',
-      apiKey: 'c23eb8e7895f42daeaf2bf6f63eb4bf6',
-      searchParameters: {
-        facetFilters: ['version:v3']
-      }
-    }
+    sidebar
+    // algolia: {
+    //   indexName: 'vuejs_cn2',
+    //   appId: 'UURH1MHAF7',
+    //   apiKey: 'c23eb8e7895f42daeaf2bf6f63eb4bf6',
+    //   searchParameters: {
+    //     facetFilters: ['version:v3']
+    //   }
+    // }
   },
   markdown: {
     config(md) {
