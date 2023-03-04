@@ -93,6 +93,10 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
       {
         text: '分享',
         link: '/resourceSharing/index'
+      },
+      {
+        text: '计算机网络',
+        link: '/computerNetworks/index'
       }
     ],
     logo: '/icon_learning.png',
