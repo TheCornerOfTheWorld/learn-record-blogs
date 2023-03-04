@@ -76,6 +76,7 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
   lang: 'zh-CN',
   srcDir: 'src',
   scrollOffset: 'header',
+  outDir: './dist',
   themeConfig: {
     nav: [
       {
