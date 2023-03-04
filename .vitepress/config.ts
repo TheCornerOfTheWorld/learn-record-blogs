@@ -22,13 +22,18 @@ export const sidebar: ThemeConfig['sidebar'] = {
     },
     {
       text: '使用',
-      items: [{ text: 'markdown编写', link: '/vitepress/markdown' }]
+      items: [{ text: 'markdown编写', link: '/vitepress/introduction' }]
     }
   ],
   '/vue3/': [
     {
       text: '组合式语法',
-      items: [{ text: 'markdown编写', link: '/vue3/test' }]
+      items: [
+        { text: '基础', link: '/vue3/basics' },
+        { text: '深入组件', link: '/vue3/deeComponent' },
+        { text: '逻辑复用', link: '/vue3/logicalReuse' },
+        { text: 'TypeScript', link: '/vue3/typescriptAndVue' }
+      ]
     }
   ]
 }
@@ -73,22 +78,26 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
   themeConfig: {
     nav: [
       {
-        text: 'vitepress',
+        text: 'Vitepress',
         link: '/vitepress/introduction'
+      },
+      {
+        text: 'Vue3',
+        link: '/vue3/basics'
       }
     ],
     logo: '/icon_learning.png',
     siteTitle: '学习笔记',
     i18n,
-    sidebar
-    // algolia: {
-    //   indexName: 'vuejs_cn2',
-    //   appId: 'UURH1MHAF7',
-    //   apiKey: 'c23eb8e7895f42daeaf2bf6f63eb4bf6',
-    //   searchParameters: {
-    //     facetFilters: ['version:v3']
-    //   }
-    // }
+    sidebar,
+    algolia: {
+      indexName: 'learn_blogs',
+      appId: 'P000HSKYE8',
+      apiKey: '25389a6b6adba4445cafb7d7d93300d2',
+      searchParameters: {
+        facetFilters: ['version:v3']
+      }
+    }
   },
   markdown: {
     config(md) {
