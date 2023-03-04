@@ -101,6 +101,22 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
       {
         text: '面试题',
         link: '/interviewQuestion/index'
+      },
+      {
+        text: 'chrome extensions',
+        link: '/chromeExtensions/index'
+      },
+      {
+        text: 'lerna',
+        link: '/lerna/index'
+      },
+      {
+        text: '低代码',
+        link: '/lowcode/index'
+      },
+      {
+        text: 'H5Debugger',
+        link: '/H5Debugger/index'
       }
     ],
     logo: '/icon_learning.png',
