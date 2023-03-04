@@ -196,14 +196,17 @@ chrome.devtools.network：获取有关网络请求的信息；
 }
 这个 devtools.html 里面一般什么都没有，就引入一个 js：
 
+```html
 <!DOCTYPE html>
 <html>
-<head></head>
-<body>
-	<script type="text/javascript" src="js/devtools.js"></script>
-</body>
+  <head></head>
+  <body>
+    <script type="text/javascript" src="js/devtools.js"></script>
+  </body>
 </html>
-可以看出来，其实真正代码是devtools.js，html文件是“多余”的，所以这里觉得有点坑，devtools_page干嘛不允许直接指定JS呢？
+```
+
+可以看出来，其实真正代码是 devtools.js，html 文件是“多余”的，所以这里觉得有点坑，devtools_page 干嘛不允许直接指定 JS 呢？
 
 再来看 devtools.js 的代码：
 

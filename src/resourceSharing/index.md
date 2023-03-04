@@ -195,8 +195,6 @@ youdao: https://github.com/liszd/whyliam.workflows.youdao
 
 猎头相关的知网论文
 
-![wecom-temp-f342422d7c63b0c57120b5d3e757dbfe](/var/folders/cj/l_bj1r4508z6xk9nb15gbf_r0000gn/T/com.tencent.WeWorkMac/wecom-temp-f342422d7c63b0c57120b5d3e757dbfe.png)
-
 QuickRes—快速切换屏幕所有分辨率
 QuickRes 是一款 mac 分辨率调整工具，可以绕过 Apple 对 mac 分辨率的限制，快速切换屏幕所有分辨率。在 15 英寸 Retina Macbook Pro 上，可以放心的将屏幕分辨率设置为最高的 3840x2400，在 5K iMac 上，可以达到 7680x4320 的最高分辨率！对于外置显示器的 Mac ，可以将分辨率设置为 HiDPI 模式，该模式与 Retina Display 显示效果非常接近。
 下载途径：https://www.thnkdev.com/QuickRes/

@@ -51,7 +51,7 @@ npm-link-example // 开发项目库
 **lerna clean**
 删除所有包的 node_modules 目录
 
-**lerna add <package>[@version] [--dev] [--exact] [--peer]**
+**lerna add [package][@version] [--dev] [--exact] [--peer]**
 添加本地包或者远程包作为包的依赖
 lerna add module-1 --scope=module-2 --dev
 

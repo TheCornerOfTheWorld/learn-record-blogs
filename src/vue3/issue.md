@@ -2,7 +2,14 @@
 
 ## vue3 开启 eslint 之后报错：error Parsing error: ‘＞‘ expected
 
-![image-20230209102503620](C:\Users\85165\AppData\Roaming\Typora\typora-user-images\image-20230209102503620.png)
+```js
+module.exports = {
+  parser: 'vue-eslint--parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser'
+  }
+}
+```
 
 ## vue3 解决 no-unused-vars 报错
 
@@ -10,7 +17,14 @@
   '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '.*', args: 'none' }], //变量声明未使用
 ```
 
-![image-20230209104145799](C:\Users\85165\AppData\Roaming\Typora\typora-user-images\image-20230209104145799.png)
+```js
+module.export = {
+  rules: {
+    '@typescripte-eslint/no-unused-vars'： 'off',
+    'no-unused-vars': 'off'
+  }
+}
+```
 
 ## ReferenceError: defineProps is not defined
 
