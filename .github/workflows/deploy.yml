@@ -7,6 +7,14 @@ on:
 
 jobs:
   deploy:
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -43,9 +51,10 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      - uses: actions/configure-pages@v2
+      - uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          folder: .vitepress/dist
+          path: .vitepress/dist
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
