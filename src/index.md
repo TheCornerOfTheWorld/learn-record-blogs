@@ -50,3 +50,16 @@ features:
     link: /H5Debugger/index
     details: h5调试...
 ---
+
+<!-- 使用 contain
+::: demo
+
+```html
+<div>1111</div>
+```
+
+```js
+console.log(123)
+```
+
+::: -->
