@@ -62,3 +62,12 @@ import ModalDemo from '@theme/components/Demo.vue'
 ::: details 查看代码
 <<< .vitepress/theme/components/demo.vue
 :::
+
+::: demo 使用 demo 展示组件
+
+```html
+<div>这里时源码</div>
+<div>源码？</div>
+```
+
+:::

@@ -3,7 +3,7 @@ import { DefaultTheme } from 'vitepress'
 
 import { defineConfigWithTheme } from 'vitepress'
 import baseConfig from '@vue/theme/config'
-import testContain from './testContain'
+import demoContain from './demoContain'
 
 export const sidebar: ThemeConfig['sidebar'] = {
   '/vitepress/': [
@@ -139,7 +139,7 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
   },
   markdown: {
     config(md) {
-      testContain(md)
+      demoContain(md)
     }
   },
   vite: {

@@ -10,6 +10,7 @@ import { h } from 'vue'
 import './styles/custom.css'
 import DefaultTheme from 'vitepress/theme'
 // import MyComponent from './components/MyComponent.vue'
+import DemoBlock from './components/DemoBlock.vue'
 import { EnhanceAppContext } from 'vitepress'
 
 export default Object.assign({}, DefaultTheme, {
@@ -25,7 +26,7 @@ export default Object.assign({}, DefaultTheme, {
     DefaultTheme.enhanceApp(ctx)
 
     // register your custom global components
-    ctx.app.component('MyGlobalComponent' /* ... */)
+    ctx.app.component('DemoBlock', DemoBlock)
   },
 
   setup() {
