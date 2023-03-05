@@ -55,10 +55,10 @@ console.log('Hello, VitePress!')
 md 文件在构建时会被转换成 vue 文件，支持直接使用组件
 
 <script setup>
-import ModalDemo from '../components/demo.vue'
+import ModalDemo from '@theme/components/Demo.vue'
 </script>
 <ModalDemo />
 
 ::: details 查看代码
-<<< @/components/demo.vue
+<<< .vitepress/theme/components/demo.vue
 :::

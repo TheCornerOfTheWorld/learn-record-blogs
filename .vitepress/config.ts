@@ -141,5 +141,10 @@ export default defineConfigWithTheme<DefaultTheme.Config | ThemeConfig>({
     config(md) {
       testContain(md)
     }
+  },
+  vite: {
+    resolve: {
+      alias: [{ find: /^@theme\//, replacement: './theme/' }]
+    }
   }
 })
