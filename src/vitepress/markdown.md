@@ -60,7 +60,7 @@ import ModalDemo from '@theme/components/Demo.vue'
 <ModalDemo />
 
 ::: details 查看代码
-<<< .vitepress/theme/components/demo.vue
+<<< .vitepress/theme/components/Demo.vue
 :::
 
 ::: demo 使用 demo 展示组件
