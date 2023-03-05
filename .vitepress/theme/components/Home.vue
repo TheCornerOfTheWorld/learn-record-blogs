@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted } from 'vue'
 // import SiteMap from "./SiteMap.vue";
 // import NewsLetter from './NewsLetter.vue'
 // import { load, data, base } from "./sponsors";
@@ -14,16 +14,16 @@ import { onMounted } from "vue";
 </script>
 
 <template>
-  <section id="hero">
+  <!-- <section id="hero">
     <h1 class="tagline">
       <span class="accent">渐进式</span>
       <br />JavaScript 框架
     </h1>
-    <p class="description">易学易用，性能出色，适用场景丰富的 Web 前端框架。</p>
+    <p class="description">
+      易学易用，性能出色，适用场景丰富的 Web 前端框架。
+    </p>
     <p class="actions">
-      <!-- NOTE: hide the home video -->
-      <!-- <vue-mastery-modal /> -->
-      <a class="get-started" href="/guide/introduction.html">
+      <a class="get-started" href="/vitepress/introduction.html">
         快速上手
         <svg
           class="icon"
@@ -39,9 +39,9 @@ import { onMounted } from "vue";
       </a>
       <a class="setup" href="/guide/quick-start.html">安装</a>
     </p>
-  </section>
+  </section> -->
 
-  <section id="highlights" class="vt-box-container">
+  <!-- <section id="highlights" class="vt-box-container">
     <div class="vt-box">
       <h2>易学易用</h2>
       <p>
@@ -58,17 +58,7 @@ import { onMounted } from "vue";
         丰富的、可渐进式集成的生态系统，可以根据应用规模在库和框架间切换自如。
       </p>
     </div>
-  </section>
-
-  <section id="sponsors">
-    <h2>Platinum Sponsors</h2>
-    <!-- <SponsorsGroup tier="platinum" placement="landing" /> -->
-    <h2>Gold Sponsors</h2>
-    <!-- <SponsorsGroup tier="gold" placement="landing" /> -->
-  </section>
-
-  <!-- <SiteMap /> -->
-  <!-- <NewsLetter /> -->
+  </section> -->
 </template>
 
 <style scoped>
@@ -164,7 +154,7 @@ html:not(.dark) .accent,
   position: relative;
   font-weight: 600;
   background-color: var(--vt-c-green);
-  color: #fff;
+  /* color: #fff; */
   margin-right: 18px;
   padding: 8px 1em;
 }
