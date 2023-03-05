@@ -21,7 +21,7 @@
 
 将响应式对象的属性**赋值或解构**至本地变量时，或是将该属性传入一个函数时，我们会**失去响应性**
 
-### ref（）
+### ref()
 
 允许我们创建可以使用任何值类型的响应式 **ref**
 
@@ -44,26 +44,19 @@ callSomeFunction(obj.foo)
 const { foo, bar } = obj
 ```
 
+### ref()解包
+
 在模板中将会被自动”解包“不需要是由`.value`，仅当 ref 是模板渲染上下文的顶层属性时才适用自动“解包”。 例如， foo 是顶层属性，但 object.foo 不是。
 
-```js
+```jsx
 const object = { foo: ref(1) }
 // template
-{
-  {
-    object.foo + 1
-  }
-} // [object object]1
-{
-  {
-    object.foo
-  }
-} // 1
+const dom1 = <div>{{ object.foo + 1 }}</div> // [object object]1
+const dom2 = <div>{{ object.foo }}</div> // 1
 
 const count = ref(0)
-const state = reactive({
-  count // count被解包
-})
+const state = reactive({ count }) // count被解包
+
 console.log(state.count) // 0
 state.count = 1
 console.log(count.value) // 1
@@ -71,7 +64,7 @@ console.log(count.value) // 1
 
 只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](https://cn.vuejs.org/api/reactivity-advanced.html#shallowreactive)的属性被访问时不会解包。
 
-### **数组和集合类型的 ref 解包**
+**数组和集合类型的 ref 解包**
 
 跟响应式对象不同，当 ref 作为响应式数组或像 `Map` 这种原生集合类型的元素被访问时，不会进行解包
 
@@ -110,27 +103,39 @@ console.log(map.get('count').value)
 </script>
 ```
 
-**Getter 不应有副作用, 不要在 getter 中做异步请求或者更改 DOM！**
+#### 实践中的computed
 
-**避免直接修改计算属性值**
+Getter **不应有副作用**, **不要**在 Getter 中做**异步请求或者更改 DOM**！
+
+避免**直接修改**计算属性值，应该更新它所依赖的源状态以触发新的计算
+
+
 
 ## 样式绑定
 
 ### v-bind
 
+绑定多个值可以传入数组
+
+模板中使用 `$attrs`可以指定组件绑定的class
+
 ```html
 <div :class="[{ active: isActive }, errorClass]"></div>
 
-<!-- MyComponent 模板使用 $attrs, 指定绑定的class -->
+<!-- MyComponent.vue -->
 <p :class="$attrs.class">Hi!</p>
 <span>This is a child component</span>
+```
 
-<!--
-自动前缀, 当你在 :style 中使用了需要浏览器特殊前缀的 CSS 属性时，Vue 会自动为他们加上相应的前缀
-数组仅会渲染浏览器支持的最后一个值。在这个示例中，在支持不需要特别前缀的浏览器中都会渲染为 display: flex。 
--->
+#### **自动前缀**
+
+当你在 :style 中使用了需要浏览器特殊前缀的 CSS 属性时，Vue 会自动为他们加上相应的前缀，赋值数组仅会渲染浏览器支持的最后一个值。在这个示例中，在支持不需要特别前缀的浏览器中都会渲染为 display: flex。 
+
+```html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
+
+
 
 ## 列表渲染
 
@@ -139,16 +144,14 @@ console.log(map.get('count').value)
 当它们同时存在于一个节点上时，`v-if` 比 `v-for` 的优先级更高。这意味着 `v-if` 的条件将无法访问到 `v-for` 作用域内定义的变量别名：
 
 ```html
-<!--
- 这会抛出一个错误，因为属性 todo 此时
- 没有在该实例上定义
--->
 <li v-for="todo in todos" v-if="!todo.isComplete">{{ todo.name }}</li>
 ```
 
-渲染的元素 key，默认模式是高效的，但**只适用于列表渲染输出的结果不依赖子组件状态或者临时 DOM 状态 (例如表单输入值) 的情况**。
+`v-if`这会抛出一个错误，因为属性 todo 此时没有在该实例上定义
 
-变更方法
+**渲染的元素 key**，默认模式是**高效的**，但**只适用**于列表渲染输出的结果，**不依赖子组件状态或者临时 DOM 状态** (例如表单输入值) 的情况。
+
+支持响应式方法：
 
 - `push()`
 - `pop()`
@@ -162,19 +165,21 @@ console.log(map.get('count').value)
 
 ### v-on
 
-在处理事件时调用 `event.preventDefault()` 或 `event.stopPropagation()` 是很常见的
-
 ```html
-<!-- 仅当 event.target 是元素本身时才会触发事件处理器 -->
-<!-- 例如：事件处理器不来自子元素 -->
-<div @click.self="doThat">...</div>
-
-<!-- 滚动事件的默认行为 (scrolling) 将立即发生而非等待 `onScroll` 完成 -->
-<!-- 以防其中包含 `event.preventDefault()` -->
-<div @scroll.passive="onScroll">...</div>
+<div @click.[Decorators]="doThat">...</div>
 ```
 
-键盘
+在处理事件时调用 `event.preventDefault()` 或 `event.stopPropagation()` 是很常见的，此时可以使用修饰器`.prevent`h或`.stop`
+
+`.self`
+
+仅当 event.target 是元素本身时才会触发事件处理器，例如：事件处理器不来自子元素
+
+`.passive`
+
+滚动事件的默认行为 (scrolling) 将立即发生而非等待 `onScroll` 完成。以防其中包含 `event.preventDefault()`
+
+#### 键盘按钮事件
 
 你可以直接使用 [`KeyboardEvent.key`](https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/key/Key_Values) 暴露的按键名称作为修饰符，但需要转为 kebab-case 形式。
 
@@ -207,7 +212,9 @@ const checkedNames = ref([])
 
 ### watch
 
-`watch` 的第一个参数可以是不同形式的“数据源”：它可以是一个 ref (包括计算属性)、一个响应式对象、一个 getter 函数、或多个数据源组成的数组：
+`watch` 的第一个参数可以是不同形式的“数据源”：
+
+它可以是一个 ref (包括计算属性)、一个响应式对象、一个 getter 函数、或多个数据源组成的数组：
 
 ```js
 const x = ref(0)
@@ -230,7 +237,11 @@ watch(
 watch([x, () => y.value], ([newX, newY]) => {
   console.log(`x is ${newX} and y is ${newY}`)
 })
+```
 
+实践中可以能遇到的情况
+
+```js
 const obj = reactive({ count: 0 })
 // 错误，因为 watch() 得到的参数是一个 number
 watch(obj.count, (count) => {
@@ -252,6 +263,8 @@ watch(
   { immediate: true }
 )
 ```
+
+
 
 ### watchEffect()
 
@@ -294,13 +307,17 @@ watchEffect(() => {
 })
 ```
 
-`watch` 只追踪明确侦听的数据源。`watchEffect`，则会在副作用发生期间追踪依赖。
+#### watch和watchEffect的区别
 
-**回调的触发时机**
+`watch` 只追踪明确侦听的数据源。
+
+`watchEffect`，则会在副作用发生期间追踪依赖。
+
+#### 回调的触发时机
 
 用户创建的侦听器回调，都会在 Vue 组件更新**之前**被调用。
 
-如果想在侦听器回调中能访问被 Vue 更新**之后**的 DOM，你需要指明 `flush: 'post'` 选项：
+如果想在侦听器回调中，能访问被 Vue 更新**之后**的 DOM，你需要指明 `flush: 'post'` 选项。后置刷新的 `watchEffect()` 有个更方便的别名 `watchPostEffect()`
 
 ```js
 watch(source, callback, {
@@ -354,7 +371,7 @@ watchPostEffect(() => {
 
 ## 模板引用
 
-### ref
+### ref="input"
 
 ```vue
 <template>
@@ -420,7 +437,7 @@ defineExpose({
 
 字符串模板就是写在 vue 中的 template 中定义的模板，如.vue 的单文件组件模板和定义组件时 template 属性值的模板。字符串模板不会在页面初始化参与页面的渲染，会被 vue 进行解析编译之后再被浏览器渲染，所以不受限于 html 结构和标签的命名。
 
-#### dom 模板(或者称为**Html 模板**)
+#### DOM 模板(或者称为**Html 模板**)
 
 dom 模板就是写在 html 文件中，一打开就会被浏览器进行解析渲染的，所以要遵循 html 结构和标签的命名，否则浏览器不解析也就不能获取内容了。
 
@@ -435,15 +452,6 @@ dom 模板就是写在 html 文件中，一打开就会被浏览器进行解析�
     <div id="app">
       Hello Vue
       <my-component></my-component>
-      <!--
-			大小写区分 闭合标签 元素位置限制
-            需要使用连字符，`/>`不被支持
-            <MyComponent />
-			<table>
-              <blog-post-row></blog-post-row> // 不被支持
-			<tr is="vue:blog-post-row"></tr> // vue:用于区分原生attr
-            </table>
-            -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script>
@@ -459,18 +467,39 @@ dom 模板就是写在 html 文件中，一打开就会被浏览器进行解析�
 </html>
 ```
 
+大小写区分
+
+ 需要使用连字符
+
+闭合标签
+
+`<my-component />`中的`/>`不被支持
+
+元素位置限制
+
+某些 HTML 元素对于放在其中的元素类型有限制，例如 `<ul>`，`<ol>`，`<table>` 和 `<select>`，相应的，某些元素仅在放置于特定元素中时才会显示，例如 `<li>`，`<tr>` 和 `<option>`。
+
+```html
+<table>
+    <blog-post-row></blog-post-row> // 不被支持
+    <tr is="vue:blog-post-row"></tr> // vue:用于区分原生attr
+</table>
+```
+
 以下不需要顾虑 dom 模板解析限制了
 
 > - 单文件组件
 > - 内联模板字符串 (例如 `template: '...'`)
 > - `<script type="text/x-template">`
 
-组件命名推荐使用PascalCase，插件支持高亮
+### 组件命名
+
+推荐使用PascalCase，Vue插件支持高亮
 
 PascalCase 帕斯卡命名 MyData
 
 camelCase 骆驼命名法 驼峰式 myData
 
-kebab-case (短横线连字符)
+kebab-case (短横线连字符) my-data
 
 [试一试](https://sfc.vuejs.org/#eNo9j01qAzEMha+iapMWOjbdDm6gu96gG2/cjJJM8B+2nBaGuXvlpBMwtj4/JL234EfO6toIRzT1UObMexvpN6fCMNHRNc+w2AgwOXbPL/caoBC3EjcCCPU0wu6TvE/wlYqfnnZ3ae2PXHKMfiwQYArZOyYhAHN+2y9LnwLrarTQ7XeOuTFch5Am8u8WRbcoktGPbnzFOXS3Q3BZXWqKkuRmy/4L1eK4GbUoUTtbPDPnOmpdj4ee/1JVKictlSot8hxIUQ3Dd0k/lYoMtrglwfUPkXdoJg==)

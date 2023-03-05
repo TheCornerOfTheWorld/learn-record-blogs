@@ -1,6 +1,6 @@
 # 逻辑复用
 
-##### 组合式函数（hook）
+## 组合式函数（hook）
 
 “组合式函数”(Composables) 是一个利用 Vue 的组合式 API 来封装和复用**有状态逻辑**的函数。
 
@@ -40,7 +40,9 @@ export function useMouse() {
 <template>Mouse position is at: {{ x }}, {{ y }}</template>
 ```
 
-在处理输入参数时兼容 ref 而不只是原始的值。[`unref()`](https://cn.vuejs.org/api/reactivity-utilities.html#unref) 工具函数会对此非常有帮助
+在处理输入参数时兼容 ref 而不只是原始的值。[`unref()`](https://cn.vuejs.org/api/reactivity-utilities.html#unref) 工具函数会对此非常有帮助，解包可能为ref的值
+
+以上实现`useFetch`封装请求函数
 
 ```js
 // fetch.js
@@ -54,7 +56,6 @@ export function useFetch(url) {
     // 在请求之前重设状态...
     data.value = null
     error.value = null
-    // unref() 解包可能为 ref 的值
     fetch(unref(url))
       .then((res) => res.json())
       .then((json) => (data.value = json))
@@ -77,31 +78,30 @@ export function useFetch(url) {
 ```html
 <script setup>
   import { useFetch } from './fetch.js'
-
   const { data, error } = useFetch('...')
 </script>
 ```
 
-###### 限制
+### 使用限制
 
 组合式函数在 `<script setup>` 或 `setup()` 钩子中，应始终被**同步地**调用。在某些场景下，你也可以在像 `onMounted()` 这样的生命周期钩子中使用他们。
 
-###### 与其他模式的比较
+### 与其他模式的比较
 
-**和 Mixin 的对比**
+#### 和 Mixin 的对比
 
 mixin 存在以下问题
 
-**不清晰的数据来源**
+不清晰的数据来源；
 
-**命名空间冲突**
+命名空间冲突；
 
-**隐式的跨 mixin 交流**：多个 mixin 需要依赖共享的属性名来进行相互作用，这使得它们隐性地耦合在一起
+隐式的跨 mixin 交流，多个 mixin 需要依赖共享的属性名来进行相互作用，这使得它们隐性地耦合在一起。
 
-**和无渲染组件对比**
+#### 和无渲染组件对比
 
 在纯逻辑复用时使用组合式函数，在需要同时复用逻辑和视图布局时使用无渲染组件。
 
-**和 react hook**
+#### 和 react hook
 
 Vue 的组合式函数是基于 Vue 细粒度的响应性系统，这和 React hooks 的执行模型有本质上的不同

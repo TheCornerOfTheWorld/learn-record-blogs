@@ -28,7 +28,7 @@
 <MyComponent />
 ```
 
-##### 事件
+##### 事件 emit
 
 ```html
 <script setup>
@@ -48,7 +48,7 @@
 </script>
 ```
 
-###### 校验
+###### 校验 Emit
 
 ```js
 const emit = defineEmits({
@@ -79,7 +79,6 @@ function submitForm(email, password) {
   defineProps(['modelValue'])
   defineEmits(['update:modelValue'])
 </script>
-
 <template>
   <input
     :value="modelValue"
@@ -87,10 +86,11 @@ function submitForm(email, password) {
   />
 </template>
 
+<!-- Form.vue -->
 <CustomInput v-model="searchText" />
 ```
 
-另一种
+通过 computed()实现
 
 ```html
 <!-- CustomInput.vue -->
@@ -99,7 +99,6 @@ function submitForm(email, password) {
 
   const props = defineProps(['modelValue'])
   const emit = defineEmits(['update:modelValue'])
-
   const value = computed({
     get() {
       return props.modelValue
@@ -110,12 +109,13 @@ function submitForm(email, password) {
   })
 </script>
 
+<!-- Form.vue -->
 <template>
   <input v-model="value" />
 </template>
 ```
 
-**v-model 参数**
+### **v-model 实现多值双向绑定**
 
 ```html
 <script setup>
@@ -133,19 +133,15 @@ function submitForm(email, password) {
 <MyComponent v-model:title="bookTitle" />
 ```
 
-**v-model 修饰符**
+### 处理 `v-model` 修饰符
 
 ```html
-<MyComponent v-model.capitalize="myText" />
-
 <script setup>
   const props = defineProps({
     modelValue: String,
     modelModifiers: { default: () => ({}) }
   })
-
   defineEmits(['update:modelValue'])
-
   console.log(props.modelModifiers) // { capitalize: true }
 </script>
 
@@ -157,17 +153,22 @@ function submitForm(email, password) {
   />
 </template>
 
-<MyComponent v-model:title.capitalize="myText">
-  <script>
-    const props = defineProps(['title', 'titleModifiers'])
-    defineEmits(['update:title'])
-
-    console.log(props.titleModifiers) // { capitalize: true }
-  </script></MyComponent
->
+<MyComponent v-model.capitalize="myText" />
 ```
 
-##### 透传 attributtes
+同时存在修饰器和绑定时
+
+```html
+<MyComponent v-model:title.capitalize="myText"></MyComponent>
+
+<script>
+  const props = defineProps(['title', 'titleModifiers'])
+  defineEmits(['update:title'])
+  console.log(props.titleModifiers) // { capitalize: true }
+</script>
+```
+
+## 透传 attributtes
 
 ###### [禁用 Attributes 继承](https://cn.vuejs.org/guide/components/attrs.html#disabling-attribute-inheritance)
 
@@ -217,39 +218,34 @@ function submitForm(email, password) {
 
 一些组件可能只包括了逻辑而不需要自己渲染内容，视图输出通过作用域插槽全权交给了消费者组件。我们将这种类型的组件称为**无渲染组件**。
 
-作用域插槽在需要**同时**封装逻辑、组合视图界面时还是很有用，就像上面的 `<FancyList>` 组件那样。
+作用域插槽在需要**同时封装逻辑、组合视图界面**时还是很有用，就像上面的 `<FancyList>` 组件那样。
 
 ## 依赖注入
 
 ```js
-// 提供
+// 提供方
 import { ref, provide } from 'vue'
-
 const count = ref(0)
 provide('key', count)
 
-// 注入
+// 注入方
 import { inject } from 'vue'
-
 const message = inject('key')
 // 如果没有祖先组件提供 "message"
 // `value` 会是 "这是默认值"
 const value = inject('message', '这是默认值')
 ```
 
-和响应数据配合
+### 和响应数据配合
 
 ```html
 <!-- 在供给方组件内 -->
 <script setup>
   import { provide, ref } from 'vue'
-
   const location = ref('North Pole')
-
   function updateLocation() {
     location.value = 'South Pole'
   }
-
   provide('location', {
     location,
     updateLocation
@@ -259,7 +255,6 @@ const value = inject('message', '这是默认值')
 <!-- 在注入方组件 -->
 <script setup>
   import { inject } from 'vue'
-
   const { location, updateLocation } = inject('location')
 </script>
 
@@ -268,7 +263,7 @@ const value = inject('message', '这是默认值')
 </template>
 ```
 
-使用 symbol 注入
+### 使用 symbol 注入
 
 ```js
 // keys.js
@@ -292,22 +287,9 @@ import { myInjectionKey } from './keys.js'
 const injected = inject(myInjectionKey)
 ```
 
-```js
-import { provide, inject } from 'vue'
-import type { InjectionKey } from 'vue'
-
-const key = Symbol() as InjectionKey<string>
-
-provide(key, 'foo') // 若提供的是非字符串值会导致错误
-
-const foo = inject(key) // foo 的类型：string | undefined
-
-const foo = inject<string>('foo') // 类型：string | undefined
-const foo = inject<string>('foo', 'bar') // 类型：string
-const foo = inject('foo') as string
-```
-
 ## 异步组件
+
+### defineAsyncComponent（）
 
 ```js
 const AsyncComp = defineAsyncComponent({
