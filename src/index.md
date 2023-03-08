@@ -56,16 +56,7 @@ import Home from '@theme/components/Home.vue'
 </script>
 <Home />
 
-2.  flutter
-
-3.  写一个小的 react、vue
-
-    1. ctrl k ctrl 0 全部收起
-    2. ctrl k ctrl j 全部展开
-    3. ctrl k ctrl [ 递归收起
-    4. ctrl ctrl ] 递归展开
-
-    [尤雨溪国外教程：亲手带你写个简易版的 Vue！](https://juejin.cn/post/6992018709439053837)
+3.  写一个小的 react
 
 4.  沙盒 chrome://new-tab-page-third-party/
 
@@ -78,8 +69,6 @@ import Home from '@theme/components/Home.vue'
     1. node nest.js express.js next.js
 
        复习之前的项目 my-server
-
-       p2p
 
        计算机网络实践
 
@@ -124,16 +113,7 @@ import Home from '@theme/components/Home.vue'
 
 20. [安全](https://cn.vuejs.org/guide/best-practices/security.html)
 
-21. github actions 自动部署
-
-22. [doseach](https://v2.vuepress.vuejs.org/zh/reference/plugin/docsearch.html)
-
-23. 文档项目编写
-
-        1. 总结过往笔记
-        2. 增加功能
-
-24. 写一个计划管理系统；项目管理项目需求评估和可行性分析（今天可以考虑下需要什么功能）
+21. 写一个计划管理系统；项目管理项目需求评估和可行性分析（今天可以考虑下需要什么功能）
 
     背景：记录平时都在做什么，为什么效率那么低，为什么会怠慢，知行合一？理论比现实先行？
 
@@ -142,29 +122,25 @@ import Home from '@theme/components/Home.vue'
           3. 项目管理
           4. 缺陷和功能记录
 
-25. 自己写一个网页设置成夜间模式插件
+22. 自己写一个网页设置成夜间模式插件
 
     1. chrome-extension://dmghijelimhndkbmpgbldicpogfkceaj/data/content_script/general/dark_40.css
 
-26. LocaleSpecificConfig<ThemeConfig = any> ts 泛型 https://segmentfault.com/a/1190000038312096
+23. LocaleSpecificConfig<ThemeConfig = any> ts 泛型 https://segmentfault.com/a/1190000038312096
 
-27. vite
+24. vite
 
-28. DepOps
+25. DepOps
 
-29. three.js
+26. three.js
 
-30. react
+27. p2p node
 
-31. p2p node
+28. pnpm esbuild
 
-32. mini font 联邦 monorepo yarn workspace
+29. 错误收集
 
-33. pnpm esbuild
-
-34. 错误收集
-
-35. const defaultRender = md.renderer.rules.fence!
+30. const defaultRender = md.renderer.rules.fence!
 
 缓慢的服务器启动¶
 当冷启动开发服务器时，基于打包器的方式启动必须优先抓取并构建你的整个应用，然后才能提供服务。
